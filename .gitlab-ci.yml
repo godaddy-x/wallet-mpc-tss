@@ -1,0 +1,26 @@
+stages:
+    - test
+
+test-staging:
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
+    image: golang
+    stage: test
+    tags:
+        - go-runner
+    before_script:
+        - export GO_PROJECT_NAMESPACE="$GOPATH/src/github.com/godaddy-x"
+        - echo $GO_PROJECT_NAMESPACE
+        - mkdir -p $GO_PROJECT_NAMESPACE
+        - ln -srf $(pwd) $GO_PROJECT_NAMESPACE/wallet-mpc-tss
+        - export GO_PROJECT_PATH="$GO_PROJECT_NAMESPACE/wallet-mpc-tss"
+        - echo $GO_PROJECT_PATH
+        - cd $GO_PROJECT_PATH
+        - rm -rf release
+    script:
+        - cd $GO_PROJECT_PATH
+        - echo $(pwd)
+        - ls
+        # - go test ./walletapi
+    environment:
+        name: staging

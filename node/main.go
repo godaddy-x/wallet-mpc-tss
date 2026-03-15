@@ -1,0 +1,141 @@
+// 节点程序入口：连接服务端 WebSocket，处理临时公钥交换与 mpcKeygen/mpcSign 的 Push 与 POST，参与 TSS 协议。
+package main
+
+import (
+	"crypto/ecdh"
+	"encoding/json"
+	"errors"
+	"flag"
+	"fmt"
+	"time"
+
+	"github.com/godaddy-x/wallet-mpc-tss/walletapi"
+	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
+	ecc "github.com/godaddy-x/eccrypto"
+	"github.com/godaddy-x/freego/cache"
+	"github.com/godaddy-x/freego/utils"
+	"github.com/godaddy-x/freego/utils/sdk"
+)
+
+var (
+	keyCache = cache.NewLocalCache(3, 3)
+)
+
+func getTempPrivateKey(mod, subject, taskID string) (*ecdh.PrivateKey, error) {
+	key := utils.FNV1a64(utils.AddStr(subject, ":", taskID, ":", mod, ":tempPrivateKey"))
+	value, b, err := keyCache.Get(key, nil)
+	if err != nil {
+		return nil, err
+	}
+	if b && value != nil {
+		return value.(*ecdh.PrivateKey), nil
+	}
+	return nil, nil
+}
+
+func getTempPublicKey(mod, subject, taskID string) ([]byte, error) {
+	key := utils.FNV1a64(utils.AddStr(subject, ":", taskID, ":", mod, ":tempPublicKey"))
+	value, err := keyCache.GetString(key)
+	if err != nil {
+		return nil, err
+	}
+	if value != "" {
+		return utils.Base64Decode(value), nil
+	}
+	return nil, nil
+}
+
+func handleTempPublicKey(wsClient *sdk.SocketSDK, subject, router string, data []byte) error {
+	request := dto.CliMPCTempPublicKeyReq{}
+	if err := json.Unmarshal(data, &request); err != nil {
+		return errors.New("handleTempPublicKey json unmarshal error: " + err.Error())
+	}
+	if request.Module == "" {
+		return errors.New("handleTempPublicKey invalid module")
+	}
+	prk, err := ecc.CreateECDH()
+	if err != nil {
+		return errors.New("handleTempPublicKey create ecdh error: " + err.Error())
+	}
+	cacheKey := utils.FNV1a64(utils.AddStr(subject, ":", request.TaskID, ":", request.Module, ":tempPrivateKey"))
+	if err := keyCache.Put(cacheKey, prk, 600); err != nil {
+		return errors.New("handleTempPublicKey put tempPrivateKey error: " + err.Error())
+	}
+	request.PublicKey = utils.Base64Encode(ecc.GetECDHPublicKeyBytes(prk.PublicKey()))
+	response := dto.CliMPCTempPublicKeyRes{}
+	if err := wsClient.SendWebSocketMessage("/ws/mpcTempPublicKey", &request, &response, true, true, 30); err != nil {
+		return errors.New("handleTempPublicKey send shard message error: " + err.Error())
+	}
+	return nil
+}
+
+func RunMPCNode(cliConfig walletapi.SdkConfig) {
+	cliHttp := walletapi.NewHttpSDK(cliConfig)
+
+	time.Sleep(2 * time.Second)
+
+	wsClient := sdk.NewSocketSDK(cliConfig.WSDomain)
+	wsClient.SetClientNo(cliConfig.ClientNo)
+	_ = wsClient.SetECDSAObject(cliConfig.ClientNo, cliConfig.ClientPrk, cliConfig.ServerPub)
+	wsClient.EnableReconnect()
+	auth := cliHttp.GetAuth()
+	wsClient.AuthToken(auth)
+	wsClient.SetTokenExpiredCallback(func() {
+		auth = cliHttp.GetAuth()
+		wsClient.AuthToken(auth)
+	})
+	wsClient.SetHealthPing(10)
+
+	if err := wsClient.ConnectWebSocket("/ws"); err != nil {
+		fmt.Println(errors.New("sdk connect websocket error: " + err.Error()))
+		return
+	}
+
+	fmt.Println("sdk connect websocket success: ", cliConfig.Source)
+
+	wsClient.SetPushMessageCallback(func(router string, data []byte) {
+		if router == "mpcTempPublicKey" {
+			if err := handleTempPublicKey(wsClient, cliConfig.Source, router, data); err != nil {
+				fmt.Println(err)
+			}
+		} else if router == "mpcKeygenStart" {
+			go func() {
+				if err := HandleMpcKeygenStart(wsClient, cliConfig.Source, router, data); err != nil {
+					fmt.Println("mpc keygen error:", err)
+				} else {
+					fmt.Println("mpc keygen done, result submitted")
+				}
+			}()
+		} else if router == "mpcKeygenMsg" {
+			fmt.Printf("[mpc-keygen] Push received: router=%s len=%d\n", router, len(data))
+			if err := DeliverMpcKeygenMsg(wsClient, cliConfig.Source, router, data); err != nil && err.Error() != "Error is nil" {
+				fmt.Println("mpcKeygenMsg deliver error:", err)
+			}
+		} else if router == "mpcSignStart" {
+			go func() {
+				if err := HandleMpcSignStart(wsClient, cliConfig.Source, router, data); err != nil {
+					fmt.Println("mpc sign error:", err)
+				} else {
+					fmt.Println("mpc sign done, result submitted")
+				}
+			}()
+		} else if router == "mpcSignMsg" {
+			fmt.Printf("[mpc-sign] Push received: router=%s len=%d\n", router, len(data))
+			if err := DeliverMpcSignMsg(wsClient, cliConfig.Source, router, data); err != nil && err.Error() != "Error is nil" {
+				fmt.Println("mpcSignMsg deliver error:", err)
+			}
+		}
+	})
+}
+
+func main() {
+	configFile := flag.String("config", "cli_node.json", "节点配置文件路径（JSON）")
+	flag.Parse()
+
+	cliConfig := walletapi.ReadJson(*configFile)
+
+	RunMPCNode(cliConfig)
+
+	time.Sleep(2000 * time.Second)
+
+}
