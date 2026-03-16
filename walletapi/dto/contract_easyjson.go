@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto(in *jlexer.Lexer, out *GetContractsRes) {
+func easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto(in *jlexer.Lexer, out *GetContractsRes) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -74,7 +74,7 @@ func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto(in *jlexer.Le
 		in.Consumed()
 	}
 }
-func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto(out *jwriter.Writer, in GetContractsRes) {
+func easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto(out *jwriter.Writer, in GetContractsRes) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -105,27 +105,27 @@ func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto(out *jwriter.
 // MarshalJSON supports json.Marshaler interface
 func (v GetContractsRes) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto(&w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetContractsRes) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto(w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetContractsRes) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto(&r, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetContractsRes) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto(l, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto(l, v)
 }
-func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto1(in *jlexer.Lexer, out *GetContractsReq) {
+func easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto1(in *jlexer.Lexer, out *GetContractsReq) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -209,7 +209,7 @@ func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto1(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto1(out *jwriter.Writer, in GetContractsReq) {
+func easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto1(out *jwriter.Writer, in GetContractsReq) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -269,27 +269,27 @@ func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto1(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v GetContractsReq) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto1(&w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto1(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetContractsReq) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto1(w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto1(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetContractsReq) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto1(&r, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto1(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetContractsReq) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto1(l, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto1(l, v)
 }
-func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto2(in *jlexer.Lexer, out *ContractResult) {
+func easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto2(in *jlexer.Lexer, out *ContractResult) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -367,7 +367,7 @@ func easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto2(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto2(out *jwriter.Writer, in ContractResult) {
+func easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto2(out *jwriter.Writer, in ContractResult) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -422,23 +422,23 @@ func easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto2(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v ContractResult) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto2(&w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ContractResult) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson42340b0aEncodeGithubComOpenserverOpenStdrpcApiMainDto2(w, v)
+	easyjson42340b0aEncodeGithubComBlockchainOpenStdrpcApiMainDto2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ContractResult) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto2(&r, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ContractResult) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson42340b0aDecodeGithubComOpenserverOpenStdrpcApiMainDto2(l, v)
+	easyjson42340b0aDecodeGithubComBlockchainOpenStdrpcApiMainDto2(l, v)
 }

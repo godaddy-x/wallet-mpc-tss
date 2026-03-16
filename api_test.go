@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
 	"github.com/godaddy-x/freego/utils"
 	"github.com/godaddy-x/freego/utils/sdk"
+	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
 )
 
 const (
@@ -80,7 +80,7 @@ func TestCreateAccount(t *testing.T) {
 	requestData := dto.CliCreateAccountReq{
 		WalletID:  "VzYK21Vem6WBXHXZmSRYGN4iaE6n2naF6z",
 		LastIndex: -1,
-		Curve:     3972005888,
+		Curve:     1,
 	}
 	responseData := dto.CreateAccountRes{}
 	if err := httpSDK.PostByAuth("/api/CreateAccount", &requestData, &responseData, true); err != nil {

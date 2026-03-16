@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/godaddy-x/freego/utils"
 	"github.com/godaddy-x/wallet-adapter/types"
 	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
-	"github.com/godaddy-x/freego/utils"
 )
 
 var (
@@ -50,9 +50,9 @@ func TestCreateWallet(t *testing.T) {
 func TestMPCCreateAccount(t *testing.T) {
 
 	cliRequestData := dto.CliCreateAccountReq{
-		WalletID:  "Vzr9Lfg6v8E2LbaBbfQVqPKNWgiwCth38J",
+		WalletID:  "19xPEVD5G7buyQbAg6UkGTXcnKf2xAKA3S",
 		LastIndex: -1,
-		Curve:     3972005888,
+		Curve:     1,
 	}
 	cliResponseData := dto.CliCreateAccountRes{}
 	if err := cliHttpSDK.PostByAuth("/api/CreateAccount", &cliRequestData, &cliResponseData, true); err != nil {
@@ -82,11 +82,11 @@ func TestMPCCreateAccount(t *testing.T) {
 func TestMPCCreateAddress(t *testing.T) {
 
 	cliRequestData := dto.CliCreateAddressReq{
-		WalletID:     "Vzr9Lfg6v8E2LbaBbfQVqPKNWgiwCth38J",
-		AccountID:    "A2Jr6qFmQyXHrmxzUWGPJMGMrgwiWk26Lht83N8fvM8b",
+		WalletID:     "19xPEVD5G7buyQbAg6UkGTXcnKf2xAKA3S",
+		AccountID:    "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5",
 		AccountIndex: 0,
-		LastIndex:    -1,
-		Curve:        3972005888,
+		LastIndex:    9,
+		Curve:        1,
 		Count:        10,
 	}
 	cliResponseData := dto.CliCreateAddressRes{}
@@ -122,7 +122,7 @@ func TestCreateTrade(t *testing.T) {
 	// TODO 1.强烈推荐业务系统，首先创建交易单保存到自身系统关键字段：Symbol，Sid，AccountID，To，ContractID 保证后续校验参数
 	sid := utils.GetUUID(true)
 	symbol := "BETH"
-	accountID := "A2Jr6qFmQyXHrmxzUWGPJMGMrgwiWk26Lht83N8fvM8b"
+	accountID := "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5"
 	toAddress := "0xdAb9c307B8B23A8fD8559f75C71F0694Da30D9F6"
 	toAmount := "0.1"
 	contractID := "" // 该参数不为空则认为是合约交易单

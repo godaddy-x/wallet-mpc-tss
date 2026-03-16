@@ -10,15 +10,15 @@ import (
 	"sync/atomic"
 
 	"github.com/awnumar/memguard"
+	DIC "github.com/godaddy-x/freego/common"
+	"github.com/godaddy-x/freego/ex"
+	"github.com/godaddy-x/freego/utils"
+	"github.com/godaddy-x/freego/utils/jwt"
 	"github.com/godaddy-x/wallet-adapter/types"
 	"github.com/godaddy-x/wallet-mpc-tss/mpc"
 	"github.com/godaddy-x/wallet-mpc-tss/mpc/alg_ecdsa"
 	"github.com/godaddy-x/wallet-mpc-tss/walletapi"
 	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
-	DIC "github.com/godaddy-x/freego/common"
-	"github.com/godaddy-x/freego/ex"
-	"github.com/godaddy-x/freego/utils"
-	"github.com/godaddy-x/freego/utils/jwt"
 )
 
 // CliService 提供钱包与交易相关业务逻辑，并控制并发（如解锁/创建钱包同时仅允许一个进行中）。
@@ -33,7 +33,8 @@ const (
 
 	// CurveECDSA 用于标识 ECDSA(secp256k1) 曲线的魔数（与前端/调用方约定）。
 	// 其他曲线（如 Ed25519）可在未来按需增加新的常量。
-	CurveECDSA int64 = 3972005888
+	CurveECDSA   int64 = 1
+	CurveEd25519 int64 = 2
 )
 
 var (
@@ -96,7 +97,7 @@ func (s *CliService) CreateAccount(req *dto.CliCreateAccountReq, res *dto.CliCre
 	if req.LastIndex < -1 {
 		return ex.Throw{Code: ex.BIZ, Msg: "lastIndex invalid"}
 	}
-	// Curve 作为算法/曲线参数：当前仅支持 3972005888 表示 ECDSA(secp256k1)，
+	// Curve 作为算法/曲线参数：当前仅支持 1 表示 ECDSA(secp256k1)，
 	// 其他值（例如未来的 Ed25519）暂未实现。
 	if req.Curve != CurveECDSA {
 		return ex.Throw{Code: ex.BIZ, Msg: "curve invalid"}
@@ -156,7 +157,7 @@ func (s *CliService) CreateAddress(req *dto.CliCreateAddressReq, res *dto.CliCre
 	if req.Count <= 0 || req.Count > 2000 {
 		return ex.Throw{Code: ex.BIZ, Msg: "count invalid"}
 	}
-	// Curve 作为算法/曲线参数：当前仅支持 3972005888 表示 ECDSA(secp256k1)，
+	// Curve 作为算法/曲线参数：当前仅支持 1 表示 ECDSA(secp256k1)，
 	// 其他值（例如未来的 Ed25519）暂未实现。
 	if req.Curve != CurveECDSA {
 		return ex.Throw{Code: ex.BIZ, Msg: "curve invalid"}
@@ -210,7 +211,7 @@ func (s *CliService) SignTransaction(req *dto.CliSignTransactionReq, res *dto.Cl
 			continue
 		}
 		for k, keySignature := range keySignatures {
-			if keySignature.EccType == uint32(3972005888) {
+			if keySignature.EccType == uint32(CurveECDSA) {
 				accountIndex, change, addressIndex, err := ParseMPCPath(keySignature.Address.HDPath)
 				if err != nil {
 					return ex.Throw{Code: ex.BIZ, Msg: "parse mpc path error", Err: err}

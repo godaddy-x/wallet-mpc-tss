@@ -20,7 +20,7 @@ type CreateAccountReq struct {
 	AccountID      string   `json:"accountID"`
 	HdPath         string   `json:"hdPath"`
 	Remark         string   `json:"remark"`
-	OnlyAccount    int64    `json:"onlyAccount"`
+	OnlyAccount    int64    `json:"onlyAccount"` // 只产生帐户ID=1，默认=0产生1个地址
 	UserID         int64    `json:"userID"`
 }
 

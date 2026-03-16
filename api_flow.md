@@ -64,7 +64,7 @@ for _, v := range cliResponseData.Result {
 cliRequestData := dto.CliCreateAccountReq{
     WalletID:  "VzYK21Vem6WBXHXZmSRYGN4iaE6n2naF6z", // 已存在的 MPC 钱包 ID
     LastIndex: -1,
-    Curve:     3972005888, // ECDSA 曲线标识
+    Curve:     1, // ECDSA 曲线标识
 }
 cliResponseData := dto.CliCreateAccountRes{}
 cliHttpSDK.PostByAuth("/api/CreateAccount", &cliRequestData, &cliResponseData, true)

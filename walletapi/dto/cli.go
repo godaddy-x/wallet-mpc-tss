@@ -49,7 +49,7 @@ type CliCreateAccountReq struct {
 	common.BaseReq
 	WalletID  string `json:"walletID"`
 	LastIndex int64  `json:"lastIndex"` // 錢包所屬帳戶ID最後索引值
-	Curve     int64  `json:"curve"`     // 曲线参数，3972005888代表ecdsa
+	Curve     int64  `json:"curve"`     // 曲线参数，1代表ecdsa
 }
 
 //easyjson:json
@@ -72,7 +72,7 @@ type CliCreateAddressReq struct {
 	AccountIndex int64  `json:"accountIndex"` // 錢包所屬账户ID索引值
 	MainSymbol   string `json:"symbol"`       // 币种字段
 	LastIndex    int64  `json:"lastIndex"`    // 錢包所屬地址ID最後索引值
-	Curve        int64  `json:"curve"`        // 曲线参数，3972005888代表ecdsa
+	Curve        int64  `json:"curve"`        // 曲线参数，1代表ecdsa
 	Count        int64  `json:"count"`        // 地址数量
 	Change       int64  `json:"change"`       // 0=外部地址, 1=找零
 }
