@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto(in *jlexer.Lexer, out *SymbolResult) {
+func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.Lexer, out *SymbolResult) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -179,7 +179,7 @@ func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto(in *jlexer.Le
 		in.Consumed()
 	}
 }
-func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto(out *jwriter.Writer, in SymbolResult) {
+func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter.Writer, in SymbolResult) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -304,27 +304,27 @@ func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto(out *jwriter.
 // MarshalJSON supports json.Marshaler interface
 func (v SymbolResult) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto(&w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v SymbolResult) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto(w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *SymbolResult) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto(&r, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *SymbolResult) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto(l, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(l, v)
 }
-func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto1(in *jlexer.Lexer, out *SymbolBlockListRes) {
+func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(in *jlexer.Lexer, out *SymbolBlockListRes) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -375,7 +375,7 @@ func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto1(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto1(out *jwriter.Writer, in SymbolBlockListRes) {
+func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(out *jwriter.Writer, in SymbolBlockListRes) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -401,27 +401,27 @@ func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto1(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v SymbolBlockListRes) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto1(&w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v SymbolBlockListRes) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto1(w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *SymbolBlockListRes) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto1(&r, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *SymbolBlockListRes) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto1(l, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(l, v)
 }
-func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto2(in *jlexer.Lexer, out *SymbolBlockListReq) {
+func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer.Lexer, out *SymbolBlockListReq) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -487,7 +487,7 @@ func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto2(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto2(out *jwriter.Writer, in SymbolBlockListReq) {
+func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwriter.Writer, in SymbolBlockListReq) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -532,27 +532,27 @@ func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto2(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v SymbolBlockListReq) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto2(&w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v SymbolBlockListReq) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto2(w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *SymbolBlockListReq) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto2(&r, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *SymbolBlockListReq) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto2(l, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(l, v)
 }
-func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto3(in *jlexer.Lexer, out *GetBlockStatusRes) {
+func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto3(in *jlexer.Lexer, out *GetBlockStatusRes) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -588,7 +588,7 @@ func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto3(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto3(out *jwriter.Writer, in GetBlockStatusRes) {
+func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto3(out *jwriter.Writer, in GetBlockStatusRes) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -608,27 +608,27 @@ func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto3(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v GetBlockStatusRes) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto3(&w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetBlockStatusRes) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto3(w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetBlockStatusRes) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto3(&r, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetBlockStatusRes) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto3(l, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto3(l, v)
 }
-func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto4(in *jlexer.Lexer, out *GetBlockStatusReq) {
+func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto4(in *jlexer.Lexer, out *GetBlockStatusReq) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -694,7 +694,7 @@ func easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto4(in *jlexer.L
 		in.Consumed()
 	}
 }
-func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto4(out *jwriter.Writer, in GetBlockStatusReq) {
+func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto4(out *jwriter.Writer, in GetBlockStatusReq) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -739,23 +739,23 @@ func easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto4(out *jwriter
 // MarshalJSON supports json.Marshaler interface
 func (v GetBlockStatusReq) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto4(&w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto4(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v GetBlockStatusReq) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson5a804300EncodeGithubComBlockchainOpenStdrpcApiMainDto4(w, v)
+	easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto4(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *GetBlockStatusReq) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto4(&r, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto4(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *GetBlockStatusReq) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson5a804300DecodeGithubComBlockchainOpenStdrpcApiMainDto4(l, v)
+	easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto4(l, v)
 }

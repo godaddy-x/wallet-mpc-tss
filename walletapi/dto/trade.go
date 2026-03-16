@@ -2,6 +2,7 @@ package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
+	adapter "github.com/godaddy-x/wallet-adapter"
 )
 
 //easyjson:json
@@ -95,7 +96,7 @@ type SubmitRawTransaction struct {
 //easyjson:json
 type SubmitRawTransactionReq struct {
 	common.BaseReq
-	TxData *TxData `json:"txData"`
+	PendingSignTx *adapter.PendingSignTx `json:"pendingSignTx"`
 }
 
 //easyjson:json
@@ -170,19 +171,8 @@ type CreateTradeReq struct {
 }
 
 //easyjson:json
-type TxData struct {
-	Sid        string            `json:"sid"`
-	Data       string            `json:"data"`
-	DataSign   string            `json:"dataSign"`  // 业务系统进行校验签名
-	TradeSign  string            `json:"tradeSign"` // CLI系统进行校验签名
-	Code       string            `json:"code"`
-	Message    string            `json:"message"`
-	SignerList map[string]string `json:"signerList"`
-}
-
-//easyjson:json
 type CreateTradeRes struct {
-	TxData []*TxData `json:"txData"`
+	PendingSignTx []*adapter.PendingSignTx `json:"pendingSignTx"`
 }
 
 // CreateSummaryTxReq 用于创建汇总交易（归集交易）的请求结构体。

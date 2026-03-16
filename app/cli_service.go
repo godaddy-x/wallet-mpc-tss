@@ -327,21 +327,9 @@ func checkAndUnmarshalTx(typ int64, data, tradeSign string) (*types.RawTransacti
 
 	var tx *types.RawTransaction
 
-	if typ == 0 {
-		tx = &types.RawTransaction{}
-		if err := utils.JsonUnmarshal(utils.Str2Bytes(data), tx); err != nil {
-			return nil, ex.Throw{Code: ex.BIZ, Msg: "tx decode error", Err: err}
-		}
-	} else {
-		txErr := &types.RawTransactionWithError{}
-		if err := utils.JsonUnmarshal(utils.Str2Bytes(data), txErr); err != nil {
-			return nil, ex.Throw{Code: ex.BIZ, Msg: "tx decode error", Err: err}
-		}
-		if txErr.Error != nil {
-			return nil, ex.Throw{Code: ex.BIZ, Msg: "tx error: " + txErr.Error.Error()}
-		}
-
-		tx = txErr.RawTx
+	tx = &types.RawTransaction{}
+	if err := utils.JsonUnmarshal(utils.Str2Bytes(data), tx); err != nil {
+		return nil, ex.Throw{Code: ex.BIZ, Msg: "tx decode error", Err: err}
 	}
 
 	if tx.TxType != typ {

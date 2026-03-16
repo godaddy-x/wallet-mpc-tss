@@ -10,11 +10,12 @@ import (
 	"time"
 
 	"github.com/awnumar/memguard"
-	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
 	DIC "github.com/godaddy-x/freego/common"
 	"github.com/godaddy-x/freego/utils"
 	"github.com/godaddy-x/freego/utils/sdk"
 	"github.com/godaddy-x/freego/zlog"
+	adapter "github.com/godaddy-x/wallet-adapter"
+	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
 )
 
 // SdkConfig 为节点/CLI 连接钱包服务端所需的 HTTP/WebSocket 与认证参数。
@@ -140,8 +141,8 @@ func SignTradeBalancePush(key string, data dto.TradeBalancePushResult) (string, 
 	return utils.Base64Encode(utils.HMAC_SHA256_BASE(utils.Str2Bytes(signData.String()), hashKey)), nil
 }
 
-// CheckTxDataSign 校验 txData 中每条记录的 DataSign 是否与 appKey 的 HMAC-SHA256 一致。
-func CheckTxDataSign(appKey string, txData []*dto.TxData) error {
+// CheckPendingSignTx 校验 PendingSignTx 中每条记录的 DataSign 是否与 appKey 的 HMAC-SHA256 一致。
+func CheckPendingSignTx(appKey string, txData []*adapter.PendingSignTx) error {
 	if len(txData) == 0 {
 		return errors.New("tx data is nil")
 	}
@@ -158,8 +159,8 @@ func CheckTxDataSign(appKey string, txData []*dto.TxData) error {
 	return nil
 }
 
-// CheckTxTradeSign 校验 txData 中每条记录的 TradeSign 是否与 tradeKey（hex）的 HMAC-SHA256 一致。
-func CheckTxTradeSign(tradeKey string, txData []*dto.TxData) error {
+// CheckPendingTradeSignTx 校验 PendingSignTx 中每条记录的 TradeSign 是否与 tradeKey（hex）的 HMAC-SHA256 一致。
+func CheckPendingTradeSignTx(tradeKey string, txData []*adapter.PendingSignTx) error {
 	if len(txData) == 0 {
 		return errors.New("tx data is nil")
 	}

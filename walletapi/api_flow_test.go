@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/godaddy-x/freego/utils"
-	"github.com/godaddy-x/wallet-adapter/types"
+	adapter "github.com/godaddy-x/wallet-adapter"
 	"github.com/godaddy-x/wallet-mpc-tss/walletapi/dto"
 )
 
@@ -125,7 +125,8 @@ func TestCreateTrade(t *testing.T) {
 	accountID := "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5"
 	toAddress := "0xdAb9c307B8B23A8fD8559f75C71F0694Da30D9F6"
 	toAmount := "0.1"
-	contractID := "" // 该参数不为空则认为是合约交易单
+	//contractID := "" // 该参数不为空则认为是合约交易单
+	contractID := "ZA+oTwXimYwVFJ5Tk7ACU6tD+6ycw7u2UsdHLVof8kg="
 
 	// TODO 2.发起交易单构建请求云端系统
 	requestData := dto.CreateTradeReq{
@@ -148,15 +149,15 @@ func TestCreateTrade(t *testing.T) {
 	fmt.Println(responseData)
 
 	// TODO 3.进行交易单JSON数据验签
-	if err := CheckTxDataSign(opsConfig.AppKey, responseData.TxData); err != nil {
+	if err := CheckPendingSignTx(opsConfig.AppKey, responseData.PendingSignTx); err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	txData := responseData.TxData[0]
+	txData := responseData.PendingSignTx[0]
 
 	// TODO 4.反序列交易单对象并进行关键字段校验Symbol，Sid，AccountID，To, ContractID
-	tx := &types.RawTransaction{}
+	tx := &adapter.RawTransaction{}
 	if err := utils.JsonUnmarshal(utils.Str2Bytes(txData.Data), tx); err != nil {
 		fmt.Println(err)
 		return
@@ -208,7 +209,7 @@ func TestCreateTrade(t *testing.T) {
 	// TODO 6.交易单CLI签名成功后，进行云端系统广播
 	txData.SignerList = cliResponseData.SignerList
 	requestSubmitData := dto.SubmitRawTransactionReq{
-		TxData: txData,
+		PendingSignTx: txData,
 	}
 	responseSubmitData := dto.SubmitRawTransactionRes{}
 	if err := opsHttpSDK.PostByAuth("/api/SubmitTrade", &requestSubmitData, &responseSubmitData, true); err != nil {
@@ -221,13 +222,15 @@ func TestCreateTrade(t *testing.T) {
 
 }
 
+// 流程：1.指定帐户ID通过云端创建汇总交易单 2.业务系统验证数据签名和校验业务数据 3.发送交易单给CLI进行验签并签名
 func TestCreateSummaryTx(t *testing.T) {
 
 	// TODO 1.强烈推荐业务系统，首先创建交易单保存到自身系统关键字段：Symbol，Sid，AccountID，To，ContractID 保证后续校验参数
 	sid := utils.GetUUID(true)
 	symbol := "BETH"
-	accountID := "8K4oVwL3dLQmLzrsj2zXzbeapCsETNsRVFtykmAKBvp6"
+	accountID := "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5"
 	toAddress := "0xdAb9c307B8B23A8fD8559f75C71F0694Da30D9F6"
+	//contractID := ""
 	contractID := "ZA+oTwXimYwVFJ5Tk7ACU6tD+6ycw7u2UsdHLVof8kg=" // 该参数不为空则认为是合约交易单
 
 	// TODO 2.发起汇总交易单构建请求云端系统
@@ -245,20 +248,24 @@ func TestCreateSummaryTx(t *testing.T) {
 	}
 
 	// TODO 3.进行交易单JSON数据验签
-	if err := CheckTxDataSign(opsConfig.AppKey, responseData.TxData); err != nil {
+	if err := CheckPendingSignTx(opsConfig.AppKey, responseData.PendingSignTx); err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	for _, v := range responseData.TxData {
+	for _, v := range responseData.PendingSignTx {
+
+		if v.Code != "" {
+			fmt.Println("tx error: ", v.Code, v.Message, v.Data)
+			continue
+		}
+
 		// TODO 4.反序列交易单对象并进行关键字段校验Symbol，Sid，AccountID，To, ContractID
-		txErr := &types.RawTransactionWithError{}
-		if err := utils.JsonUnmarshal(utils.Str2Bytes(v.Data), txErr); err != nil {
+		tx := &adapter.RawTransaction{}
+		if err := utils.JsonUnmarshal(utils.Str2Bytes(v.Data), tx); err != nil {
 			fmt.Println(err)
 			return
 		}
-
-		tx := txErr.RawTx
 
 		if !strings.HasPrefix(tx.Sid, utils.AddStr(sid, "#")) {
 			fmt.Println(errors.New("sid invalid"))
@@ -302,6 +309,8 @@ func TestCreateSummaryTx(t *testing.T) {
 			fmt.Println(errors.New("cli signer is nil"))
 			return
 		}
+
+		fmt.Println("signer list:", cliResponseData.SignerList)
 
 	}
 }

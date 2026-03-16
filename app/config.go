@@ -36,16 +36,25 @@ type YamlConfigExtract struct {
 	Extract        *Extract `yaml:"extract,omitempty"`
 }
 
+// 仅支持 MPC 模式：walletMode 只允许下列取值。
+const (
+	WalletMode2of3 int64 = 3 // 3 节点，门限 2（2-of-3）
+	WalletMode3of5 int64 = 5 // 5 节点，门限 3（3-of-5）
+)
+
 var defaultAllYamlConfig *YamlConfigExtract
 
-// InitAllConfig 从 path 加载 YAML 并校验 walletMode 为 3 或 5（仅支持 MPC 模式）。
+// InitAllConfig 从 path 加载 YAML 并校验 walletMode 仅能为 3 或 5（仅支持 MPC 模式）。
 func InitAllConfig(path string) (err error) {
 	defaultAllYamlConfig = &YamlConfigExtract{}
 	if err := utils.ReadLocalYamlConfig(path, defaultAllYamlConfig); err != nil {
 		return err
 	}
+	if defaultAllYamlConfig.Extract == nil {
+		return errors.New("extract config is required")
+	}
 	mode := defaultAllYamlConfig.Extract.WalletMode
-	if mode != 3 && mode != 5 {
+	if mode != WalletMode2of3 && mode != WalletMode3of5 {
 		return errors.New("wallet mode must be 3 or 5 (MPC only)")
 	}
 	return nil
