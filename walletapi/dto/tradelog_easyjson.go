@@ -67,23 +67,11 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.TxID = string(in.String())
 			}
-		case "txType":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.TxType = int64(in.Int64())
-			}
 		case "txAction":
 			if in.IsNull() {
 				in.Skip()
 			} else {
 				out.TxAction = string(in.String())
-			}
-		case "wxID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.WxID = string(in.String())
 			}
 		case "fromAddress":
 			if in.IsNull() {
@@ -205,11 +193,11 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.Fees = string(in.String())
 			}
-		case "type":
+		case "mainSymbol":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Type = int64(in.Int64())
+				out.MainSymbol = string(in.String())
 			}
 		case "symbol":
 			if in.IsNull() {
@@ -217,23 +205,11 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "isContract":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.IsContract = int64(in.Int64())
-			}
-		case "confirm":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.Confirm = int64(in.Int64())
+				out.IsContract = bool(in.Bool())
 			}
 		case "blockHash":
 			if in.IsNull() {
@@ -251,13 +227,7 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.IsMemo = int64(in.Int64())
-			}
-		case "isMain":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.IsMain = int64(in.Int64())
+				out.IsMemo = bool(in.Bool())
 			}
 		case "memo":
 			if in.IsNull() {
@@ -265,11 +235,17 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.Memo = string(in.String())
 			}
-		case "applytime":
+		case "applyTime":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Applytime = int64(in.Int64())
+				out.ApplyTime = int64(in.Int64())
+			}
+		case "blockTime":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.BlockTime = int64(in.Int64())
 			}
 		case "decimals":
 			if in.IsNull() {
@@ -277,35 +253,29 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.Decimals = int64(in.Int64())
 			}
+		case "dealStatus":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.DealStatus = int64(in.Int64())
+			}
+		case "notifyStatus":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.NotifyStatus = int64(in.Int64())
+			}
 		case "contractName":
 			if in.IsNull() {
 				in.Skip()
 			} else {
 				out.ContractName = string(in.String())
 			}
-		case "contractAddr":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractAddr = string(in.String())
-			}
-		case "succtime":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.Succtime = int64(in.Int64())
-			}
-		case "dealstate":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.Dealstate = int64(in.Int64())
-			}
-		case "notifystate":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.Notifystate = int64(in.Int64())
+				out.ContractAddress = string(in.String())
 			}
 		case "success":
 			if in.IsNull() {
@@ -318,6 +288,12 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 				in.Skip()
 			} else {
 				out.BalanceMode = int64(in.Int64())
+			}
+		case "outputIndex":
+			if in.IsNull() {
+				in.Skip()
+			} else {
+				out.OutputIndex = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -364,19 +340,9 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.String(string(in.TxID))
 	}
 	{
-		const prefix string = ",\"txType\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.TxType))
-	}
-	{
 		const prefix string = ",\"txAction\":"
 		out.RawString(prefix)
 		out.String(string(in.TxAction))
-	}
-	{
-		const prefix string = ",\"wxID\":"
-		out.RawString(prefix)
-		out.String(string(in.WxID))
 	}
 	{
 		const prefix string = ",\"fromAddress\":"
@@ -453,9 +419,9 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.String(string(in.Fees))
 	}
 	{
-		const prefix string = ",\"type\":"
+		const prefix string = ",\"mainSymbol\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Type))
+		out.String(string(in.MainSymbol))
 	}
 	{
 		const prefix string = ",\"symbol\":"
@@ -463,19 +429,9 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix)
-		out.String(string(in.ContractID))
-	}
-	{
 		const prefix string = ",\"isContract\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.IsContract))
-	}
-	{
-		const prefix string = ",\"confirm\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.Confirm))
+		out.Bool(bool(in.IsContract))
 	}
 	{
 		const prefix string = ",\"blockHash\":"
@@ -490,12 +446,7 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 	{
 		const prefix string = ",\"isMemo\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.IsMemo))
-	}
-	{
-		const prefix string = ",\"isMain\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.IsMain))
+		out.Bool(bool(in.IsMemo))
 	}
 	{
 		const prefix string = ",\"memo\":"
@@ -503,9 +454,14 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.String(string(in.Memo))
 	}
 	{
-		const prefix string = ",\"applytime\":"
+		const prefix string = ",\"applyTime\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Applytime))
+		out.Int64(int64(in.ApplyTime))
+	}
+	{
+		const prefix string = ",\"blockTime\":"
+		out.RawString(prefix)
+		out.Int64(int64(in.BlockTime))
 	}
 	{
 		const prefix string = ",\"decimals\":"
@@ -513,29 +469,24 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.Int64(int64(in.Decimals))
 	}
 	{
+		const prefix string = ",\"dealStatus\":"
+		out.RawString(prefix)
+		out.Int64(int64(in.DealStatus))
+	}
+	{
+		const prefix string = ",\"notifyStatus\":"
+		out.RawString(prefix)
+		out.Int64(int64(in.NotifyStatus))
+	}
+	{
 		const prefix string = ",\"contractName\":"
 		out.RawString(prefix)
 		out.String(string(in.ContractName))
 	}
 	{
-		const prefix string = ",\"contractAddr\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractAddr))
-	}
-	{
-		const prefix string = ",\"succtime\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.Succtime))
-	}
-	{
-		const prefix string = ",\"dealstate\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.Dealstate))
-	}
-	{
-		const prefix string = ",\"notifystate\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.Notifystate))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"success\":"
@@ -546,6 +497,11 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		const prefix string = ",\"balanceMode\":"
 		out.RawString(prefix)
 		out.Int64(int64(in.BalanceMode))
+	}
+	{
+		const prefix string = ",\"outputIndex\":"
+		out.RawString(prefix)
+		out.Int64(int64(in.OutputIndex))
 	}
 	out.RawByte('}')
 }
@@ -713,12 +669,6 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer.
 			} else {
 				out.TxID = string(in.String())
 			}
-		case "wxID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.WxID = string(in.String())
-			}
 		case "sid":
 			if in.IsNull() {
 				in.Skip()
@@ -737,29 +687,17 @@ func easyjsonF5a7a3cDecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer.
 			} else {
 				out.BlockHeight = int64(in.Int64())
 			}
-		case "type":
+		case "txAction":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Type = int64(in.Int64())
+				out.TxAction = string(in.String())
 			}
-		case "isMain":
+		case "ContractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.IsMain = int64(in.Int64())
-			}
-		case "isContract":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.IsContract = int64(in.Int64())
-			}
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "address":
 			if in.IsNull() {
@@ -845,11 +783,6 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwrite
 		out.String(string(in.TxID))
 	}
 	{
-		const prefix string = ",\"wxID\":"
-		out.RawString(prefix)
-		out.String(string(in.WxID))
-	}
-	{
 		const prefix string = ",\"sid\":"
 		out.RawString(prefix)
 		out.String(string(in.Sid))
@@ -865,24 +798,14 @@ func easyjsonF5a7a3cEncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwrite
 		out.Int64(int64(in.BlockHeight))
 	}
 	{
-		const prefix string = ",\"type\":"
+		const prefix string = ",\"txAction\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Type))
+		out.String(string(in.TxAction))
 	}
 	{
-		const prefix string = ",\"isMain\":"
+		const prefix string = ",\"ContractAddress\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.IsMain))
-	}
-	{
-		const prefix string = ",\"isContract\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.IsContract))
-	}
-	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"address\":"

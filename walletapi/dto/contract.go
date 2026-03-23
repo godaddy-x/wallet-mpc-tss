@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -7,24 +7,23 @@ import (
 
 //easyjson:json
 type ContractResult struct {
-	ID         int64  `json:"id"`
-	ContractID string `json:"contractID"`
-	Symbol     string `json:"symbol"`
-	Name       string `json:"name"`
-	Decimals   int64  `json:"decimals"`
-	Address    string `json:"address"`
-	Token      string `json:"token"`
-	Protocol   string `json:"protocol"`
-	Ctime      int64  `json:"ctime"`
+	ID       int64  `json:"id"`
+	Symbol   string `json:"symbol"`
+	Name     string `json:"name"`
+	Decimals int64  `json:"decimals"`
+	Address  string `json:"address"`
+	Token    string `json:"token"`
+	Protocol string `json:"protocol"`
+	CreateAt    int64  `json:"CreateAt"`
 }
 
 //easyjson:json
 type GetContractsReq struct {
 	common.BaseReq
-	Symbol     string `json:"symbol"`
-	ContractID string `json:"contractID"`
-	MainSymbol string `json:"mainSymbol"`
-	Sort       int    `json:"sort"`
+	Symbol          string `json:"symbol"`
+	ContractAddress string `json:"contractAddress"`
+	MainSymbol      string `json:"mainSymbol"`
+	Sort            int    `json:"sort"`
 }
 
 //easyjson:json

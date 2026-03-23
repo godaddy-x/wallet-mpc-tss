@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -13,15 +13,12 @@ type CreateAccountReq struct {
 	Symbol         string   `json:"symbol"`
 	OtherOwnerKeys []string `json:"otherOwnerKeys"`
 	ReqSigs        int64    `json:"reqSigs"`
-	IsTrust        int64    `json:"isTrust"`
 	PublicKey      string   `json:"publicKey"`
 	Password       string   `json:"password"`
 	AccountIndex   int64    `json:"accountIndex"`
 	AccountID      string   `json:"accountID"`
 	HdPath         string   `json:"hdPath"`
 	Remark         string   `json:"remark"`
-	OnlyAccount    int64    `json:"onlyAccount"` // 只产生帐户ID=1，默认=0产生1个地址
-	UserID         int64    `json:"userID"`
 }
 
 //easyjson:json
@@ -46,10 +43,10 @@ type FindAccountByAccountIDRes struct {
 //easyjson:json
 type GetBalanceByAccountReq struct {
 	common.BaseReq
-	AccountID  string `json:"accountID"`
-	Symbol     string `json:"symbol"`
-	ContractID string `json:"contractID"`
-	UserID     int64  `json:"userID"`
+	AccountID       string `json:"accountID"`
+	Symbol          string `json:"symbol"`
+	ContractAddress string `json:"contractAddress"`
+	UserID          int64  `json:"userID"`
 }
 
 //easyjson:json
@@ -60,13 +57,13 @@ type GetBalanceByAccountRes struct {
 //easyjson:json
 type GetAccountBalanceListReq struct {
 	common.BaseReq
-	WalletID   string `json:"walletID"`
-	AccountID  string `json:"accountID"`
-	Symbol     string `json:"symbol"`
-	ContractID string `json:"contractID"`
-	Type       int64  `json:"type"`
-	UserID     int64  `json:"userID"`
-	Sort       int    `json:"sort"`
+	WalletID        string `json:"walletID"`
+	AccountID       string `json:"accountID"`
+	Symbol          string `json:"symbol"`
+	ContractAddress string `json:"contractAddress"`
+	Type            int64  `json:"type"` // 1.主币 2.代币
+	UserID          int64  `json:"userID"`
+	Sort            int    `json:"sort"`
 }
 
 //easyjson:json
@@ -80,7 +77,6 @@ type FindAccountByWalletIDReq struct {
 	common.BaseReq
 	WalletID string `json:"walletID"`
 	Symbol   string `json:"symbol"`
-	UserID   int64  `json:"userID"`
 	Sort     int    `json:"sort"`
 }
 
@@ -105,7 +101,7 @@ type AccountResult struct {
 	HdPath         string   `json:"hdPath"`
 	AccountIndex   int64    `json:"accountIndex"`
 	AddressIndex   int64    `json:"addressIndex"`
-	Ctime          int64    `json:"ctime"`
+	CreateAt       int64    `json:"CreateAt"`
 	Remark         string   `json:"remark"`
 }
 
@@ -124,7 +120,7 @@ type AddressResult struct {
 	WatchOnly  int64  `json:"watchOnly"`
 	PublicKey  string `json:"publicKey"`
 	HdPath     string `json:"hdPath"`
-	Ctime      int64  `json:"ctime"`
+	CreateAt   int64  `json:"CreateAt"`
 }
 
 //easyjson:json
@@ -141,6 +137,6 @@ type BalanceResult struct {
 	Balance          string `json:"balance"`
 	ConfirmBalance   string `json:"confirmBalance"`
 	UnconfirmBalance string `json:"unconfirmBalance"`
-	Utime            int64  `json:"utime"`
+	UpdateAt         int64  `json:"UpdateAt"`
 	ContractToken    string `json:"contractToken"`
 }

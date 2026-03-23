@@ -127,17 +127,17 @@ func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.
 			} else {
 				out.Hash = string(in.String())
 			}
-		case "merkleroot":
+		case "merkleRoot":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Merkleroot = string(in.String())
+				out.MerkleRoot = string(in.String())
 			}
-		case "previousblockhash":
+		case "previousBlockHash":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Previousblockhash = string(in.String())
+				out.PreviousBlockHash = string(in.String())
 			}
 		case "height":
 			if in.IsNull() {
@@ -167,7 +167,7 @@ func easyjson5a804300DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Confirmations = string(in.String())
+				out.Confirmations = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -264,14 +264,14 @@ func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwrite
 		out.String(string(in.Hash))
 	}
 	{
-		const prefix string = ",\"merkleroot\":"
+		const prefix string = ",\"merkleRoot\":"
 		out.RawString(prefix)
-		out.String(string(in.Merkleroot))
+		out.String(string(in.MerkleRoot))
 	}
 	{
-		const prefix string = ",\"previousblockhash\":"
+		const prefix string = ",\"previousBlockHash\":"
 		out.RawString(prefix)
-		out.String(string(in.Previousblockhash))
+		out.String(string(in.PreviousBlockHash))
 	}
 	{
 		const prefix string = ",\"height\":"
@@ -296,7 +296,7 @@ func easyjson5a804300EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwrite
 	{
 		const prefix string = ",\"confirmations\":"
 		out.RawString(prefix)
-		out.String(string(in.Confirmations))
+		out.Int64(int64(in.Confirmations))
 	}
 	out.RawByte('}')
 }

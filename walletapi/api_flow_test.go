@@ -20,6 +20,11 @@ var opsHttpSDK = NewHttpSDK(opsConfig)
 
 var cliHttpSDK = NewHttpSDK(cliConfig)
 
+const (
+	walletID  = "1HWqKhSdHtYRPmr8dWKwE3Ac9poNy57qFD"
+	accountID = "1KVUwMmXERmbGjCCGC1eR94kj65cKFx73D"
+)
+
 // 流程：1.从CLI程序读取钱包文件列表 2.上传WalletID信息到云端
 func TestCreateWallet(t *testing.T) {
 
@@ -50,7 +55,7 @@ func TestCreateWallet(t *testing.T) {
 func TestMPCCreateAccount(t *testing.T) {
 
 	cliRequestData := dto.CliCreateAccountReq{
-		WalletID:  "19xPEVD5G7buyQbAg6UkGTXcnKf2xAKA3S",
+		WalletID:  walletID,
 		LastIndex: -1,
 		Curve:     1,
 	}
@@ -82,8 +87,8 @@ func TestMPCCreateAccount(t *testing.T) {
 func TestMPCCreateAddress(t *testing.T) {
 
 	cliRequestData := dto.CliCreateAddressReq{
-		WalletID:     "19xPEVD5G7buyQbAg6UkGTXcnKf2xAKA3S",
-		AccountID:    "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5",
+		WalletID:     walletID,
+		AccountID:    accountID,
 		AccountIndex: 0,
 		LastIndex:    9,
 		Curve:        1,
@@ -122,11 +127,10 @@ func TestCreateTrade(t *testing.T) {
 	// TODO 1.强烈推荐业务系统，首先创建交易单保存到自身系统关键字段：Symbol，Sid，AccountID，To，ContractID 保证后续校验参数
 	sid := utils.GetUUID(true)
 	symbol := "BETH"
-	accountID := "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5"
-	toAddress := "0xdAb9c307B8B23A8fD8559f75C71F0694Da30D9F6"
-	toAmount := "0.1"
-	//contractID := "" // 该参数不为空则认为是合约交易单
-	contractID := "ZA+oTwXimYwVFJ5Tk7ACU6tD+6ycw7u2UsdHLVof8kg="
+	toAddress := "0x225c6cd865aa10a3dfd2e054c28bc820de22d16e"
+	toAmount := "0.03"
+	contractAddress := "" // 该参数不为空则认为是合约交易单
+	//contractAddress := "0x83fe83f9a6bb675d4ad6dcf425a54e4cb5824aae"
 
 	// TODO 2.发起交易单构建请求云端系统
 	requestData := dto.CreateTradeReq{
@@ -134,8 +138,8 @@ func TestCreateTrade(t *testing.T) {
 		// 0x2346f1ca41d0161d26f46ec2885721c28fbf1375 默认地址
 		AccountID: accountID,
 		Coin: dto.CoinInfo{
-			Symbol:     symbol,
-			ContractID: contractID,
+			Symbol:          symbol,
+			ContractAddress: contractAddress,
 		},
 		To: map[string]string{
 			toAddress: toAmount,
@@ -173,8 +177,8 @@ func TestCreateTrade(t *testing.T) {
 		return
 	}
 
-	if tx.Coin.ContractID != contractID {
-		fmt.Println(errors.New("contractID invalid"))
+	if tx.Coin.Contract.Address != contractAddress {
+		fmt.Println(errors.New("contractAddress invalid"))
 		return
 	}
 
@@ -218,7 +222,7 @@ func TestCreateTrade(t *testing.T) {
 	}
 
 	fmt.Println("trade result：", responseSubmitData)
-	fmt.Println("txID: ", responseSubmitData.Txid, responseSubmitData.From[0], responseSubmitData.To[0])
+	fmt.Println("txID: ", responseSubmitData.TxID, responseSubmitData.From[0], responseSubmitData.To[0])
 
 }
 
@@ -230,8 +234,8 @@ func TestCreateSummaryTx(t *testing.T) {
 	symbol := "BETH"
 	accountID := "12f3mZ3p5Kd5M18SFvSAapGXcMV7cagPh5"
 	toAddress := "0xdAb9c307B8B23A8fD8559f75C71F0694Da30D9F6"
-	//contractID := ""
-	contractID := "ZA+oTwXimYwVFJ5Tk7ACU6tD+6ycw7u2UsdHLVof8kg=" // 该参数不为空则认为是合约交易单
+	//contractAddress := ""
+	contractAddress := "ZA+oTwXimYwVFJ5Tk7ACU6tD+6ycw7u2UsdHLVof8kg=" // 该参数不为空则认为是合约交易单
 
 	// TODO 2.发起汇总交易单构建请求云端系统
 	requestData := dto.CreateSummaryTxReq{
@@ -240,7 +244,7 @@ func TestCreateSummaryTx(t *testing.T) {
 		MinTransfer:     "0",
 		RetainedBalance: "0",
 		Address:         toAddress,
-		Coin:            dto.CoinInfo{Symbol: symbol, ContractID: contractID},
+		Coin:            dto.CoinInfo{Symbol: symbol, Contract: dto.SmartCoinInfo{Address: contractAddress}},
 	}
 	responseData := dto.CreateTradeRes{}
 	if err := opsHttpSDK.PostByAuth("/api/CreateSummaryTx", &requestData, &responseData, true); err != nil {
@@ -277,8 +281,8 @@ func TestCreateSummaryTx(t *testing.T) {
 			return
 		}
 
-		if tx.Coin.ContractID != contractID {
-			fmt.Println(errors.New("contractID invalid"))
+		if tx.Coin.Contract.Address != contractAddress {
+			fmt.Println(errors.New("contractAddress invalid"))
 			return
 		}
 

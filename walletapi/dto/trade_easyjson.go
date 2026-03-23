@@ -32,17 +32,11 @@ func easyjsonB0fe1dfcDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.
 		key := in.UnsafeFieldName(false)
 		in.WantColon()
 		switch key {
-		case "txid":
+		case "txID":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Txid = string(in.String())
-			}
-		case "wxid":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.Wxid = string(in.String())
+				out.TxID = string(in.String())
 			}
 		case "accountID":
 			if in.IsNull() {
@@ -221,14 +215,9 @@ func easyjsonB0fe1dfcEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwrite
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"txid\":"
+		const prefix string = ",\"txID\":"
 		out.RawString(prefix[1:])
-		out.String(string(in.Txid))
-	}
-	{
-		const prefix string = ",\"wxid\":"
-		out.RawString(prefix)
-		out.String(string(in.Wxid))
+		out.String(string(in.TxID))
 	}
 	{
 		const prefix string = ",\"accountID\":"
@@ -879,12 +868,6 @@ func easyjsonB0fe1dfcDecodeGithubComGodaddyXWalletMpcTssWalletapiDto3(in *jlexer
 		key := in.UnsafeFieldName(false)
 		in.WantColon()
 		switch key {
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "symbol":
 			if in.IsNull() {
 				in.Skip()
@@ -936,13 +919,8 @@ func easyjsonB0fe1dfcEncodeGithubComGodaddyXWalletMpcTssWalletapiDto3(out *jwrit
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix[1:])
-		out.String(string(in.ContractID))
-	}
-	{
 		const prefix string = ",\"symbol\":"
-		out.RawString(prefix)
+		out.RawString(prefix[1:])
 		out.String(string(in.Symbol))
 	}
 	{
@@ -2493,12 +2471,6 @@ func easyjsonB0fe1dfcDecodeGithubComGodaddyXWalletMpcTssWalletapiDto14(in *jlexe
 			} else {
 				out.IsContract = bool(in.Bool())
 			}
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
@@ -2540,11 +2512,6 @@ func easyjsonB0fe1dfcEncodeGithubComGodaddyXWalletMpcTssWalletapiDto14(out *jwri
 		const prefix string = ",\"isContract\":"
 		out.RawString(prefix)
 		out.Bool(bool(in.IsContract))
-	}
-	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix)
-		out.String(string(in.ContractID))
 	}
 	{
 		const prefix string = ",\"contractAddress\":"

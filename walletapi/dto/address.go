@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -7,13 +7,12 @@ import (
 
 //easyjson:json
 type SmartContract struct {
-	ContractID string `json:"contractID"`
-	Symbol     string `json:"symbol"`
-	Address    string `json:"address"`
-	Token      string `json:"token"`
-	Protocol   string `json:"protocol"`
-	Name       string `json:"name"`
-	Decimals   uint64 `json:"decimals"`
+	Symbol   string `json:"symbol"`
+	Address  string `json:"address"`
+	Token    string `json:"token"`
+	Protocol string `json:"protocol"`
+	Name     string `json:"name"`
+	Decimals uint64 `json:"decimals"`
 }
 
 //easyjson:json
@@ -124,10 +123,10 @@ type VerifyAddressRes struct {
 //easyjson:json
 type GetBalanceByAddressReq struct {
 	common.BaseReq
-	Address    string `json:"address"`
-	Symbol     string `json:"symbol"`
-	ContractID string `json:"contractID"`
-	UserID     int64  `json:"userID"`
+	Address         string `json:"address"`
+	Symbol          string `json:"symbol"`
+	ContractAddress string `json:"contractAddress"`
+	UserID          int64  `json:"userID"`
 }
 
 //easyjson:json
@@ -138,14 +137,14 @@ type GetBalanceByAddressRes struct {
 //easyjson:json
 type GetAddressBalanceListReq struct {
 	common.BaseReq
-	WalletID   string `json:"walletID"`
-	AccountID  string `json:"accountID"`
-	Address    string `json:"address"`
-	Symbol     string `json:"symbol"`
-	ContractID string `json:"contractID"`
-	Type       int64  `json:"type"`
-	UserID     int64  `json:"userID"`
-	Sort       int    `json:"sort"`
+	WalletID        string `json:"walletID"`
+	AccountID       string `json:"accountID"`
+	Address         string `json:"address"`
+	Symbol          string `json:"symbol"`
+	ContractAddress string `json:"contractAddress"`
+	Type            int64  `json:"type"`
+	UserID          int64  `json:"userID"`
+	Sort            int    `json:"sort"`
 }
 
 //easyjson:json
@@ -174,7 +173,6 @@ type GetTokenBalanceByAddressOnChainReq struct {
 	Symbol          string   `json:"symbol"`
 	AccountID       string   `json:"accountID"`
 	Addresses       []string `json:"addresses"`
-	ContractID      string   `json:"contractID"`
 	ContractAddress string   `json:"contractAddress"`
 	ContractDecimal int64    `json:"contractDecimal"`
 	ContractToken   string   `json:"contractToken"`

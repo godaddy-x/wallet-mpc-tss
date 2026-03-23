@@ -489,12 +489,6 @@ func easyjsonF4fdf71eDecodeGithubComGodaddyXWalletMpcTssWalletapiDto4(in *jlexer
 		key := in.UnsafeFieldName(false)
 		in.WantColon()
 		switch key {
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "symbol":
 			if in.IsNull() {
 				in.Skip()
@@ -546,13 +540,8 @@ func easyjsonF4fdf71eEncodeGithubComGodaddyXWalletMpcTssWalletapiDto4(out *jwrit
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix[1:])
-		out.String(string(in.ContractID))
-	}
-	{
 		const prefix string = ",\"symbol\":"
-		out.RawString(prefix)
+		out.RawString(prefix[1:])
 		out.String(string(in.Symbol))
 	}
 	{
@@ -1407,12 +1396,6 @@ func easyjsonF4fdf71eDecodeGithubComGodaddyXWalletMpcTssWalletapiDto10(in *jlexe
 				}
 				in.Delim(']')
 			}
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
@@ -1506,11 +1489,6 @@ func easyjsonF4fdf71eEncodeGithubComGodaddyXWalletMpcTssWalletapiDto10(out *jwri
 			}
 			out.RawByte(']')
 		}
-	}
-	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix)
-		out.String(string(in.ContractID))
 	}
 	{
 		const prefix string = ",\"contractAddress\":"
@@ -1674,11 +1652,11 @@ func easyjsonF4fdf71eDecodeGithubComGodaddyXWalletMpcTssWalletapiDto12(in *jlexe
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "userID":
 			if in.IsNull() {
@@ -1747,9 +1725,9 @@ func easyjsonF4fdf71eEncodeGithubComGodaddyXWalletMpcTssWalletapiDto12(out *jwri
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"userID\":"
@@ -2251,11 +2229,11 @@ func easyjsonF4fdf71eDecodeGithubComGodaddyXWalletMpcTssWalletapiDto16(in *jlexe
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "type":
 			if in.IsNull() {
@@ -2346,9 +2324,9 @@ func easyjsonF4fdf71eEncodeGithubComGodaddyXWalletMpcTssWalletapiDto16(out *jwri
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"type\":"

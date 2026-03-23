@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -26,7 +26,6 @@ type AssetsAccount struct {
 type CoinInfo struct {
 	Symbol          string        `json:"symbol"`
 	IsContract      bool          `json:"isContract"`
-	ContractID      string        `json:"contractID"`
 	ContractAddress string        `json:"contractAddress"`
 	ContractABI     string        `json:"contractABI"`
 	Contract        SmartCoinInfo `json:"contract"`
@@ -41,13 +40,12 @@ type FeesSupportAccount struct {
 
 //easyjson:json
 type SmartCoinInfo struct {
-	ContractID string `json:"contractID"`
-	Symbol     string `json:"symbol"`
-	Address    string `json:"address"`
-	Token      string `json:"token"`
-	Protocol   string `json:"protocol"`
-	Name       string `json:"name"`
-	Decimals   uint64 `json:"decimals"`
+	Symbol   string `json:"symbol"`
+	Address  string `json:"address"`
+	Token    string `json:"token"`
+	Protocol string `json:"protocol"`
+	Name     string `json:"name"`
+	Decimals uint64 `json:"decimals"`
 }
 
 //easyjson:json
@@ -101,8 +99,7 @@ type SubmitRawTransactionReq struct {
 
 //easyjson:json
 type SubmitRawTransactionRes struct {
-	Txid        string   `json:"txid"`
-	Wxid        string   `json:"wxid"`
+	TxID        string   `json:"txID"`
 	AccountID   string   `json:"accountID"`
 	Coin        CoinInfo `json:"coin"`
 	From        []string `json:"from"`

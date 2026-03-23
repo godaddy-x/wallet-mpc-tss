@@ -67,11 +67,11 @@ func easyjson22b96abDecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.L
 			} else {
 				out.AccountIndex = int64(in.Int64())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -118,9 +118,9 @@ func easyjson22b96abEncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwriter
 		out.Int64(int64(in.AccountIndex))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	out.RawByte('}')
 }
@@ -233,12 +233,6 @@ func easyjson22b96abDecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer.
 			} else {
 				out.WalletID = string(in.String())
 			}
-		case "userID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.UserID = int64(in.Int64())
-			}
 		case "cmd":
 			if in.IsNull() {
 				in.Skip()
@@ -293,11 +287,6 @@ func easyjson22b96abEncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwrite
 		const prefix string = ",\"walletID\":"
 		out.RawString(prefix[1:])
 		out.String(string(in.WalletID))
-	}
-	{
-		const prefix string = ",\"userID\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.UserID))
 	}
 	{
 		const prefix string = ",\"cmd\":"
@@ -483,12 +472,6 @@ func easyjson22b96abDecodeGithubComGodaddyXWalletMpcTssWalletapiDto4(in *jlexer.
 			} else {
 				out.WalletID = string(in.String())
 			}
-		case "userID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.UserID = int64(in.Int64())
-			}
 		case "sort":
 			if in.IsNull() {
 				in.Skip()
@@ -549,11 +532,6 @@ func easyjson22b96abEncodeGithubComGodaddyXWalletMpcTssWalletapiDto4(out *jwrite
 		const prefix string = ",\"walletID\":"
 		out.RawString(prefix[1:])
 		out.String(string(in.WalletID))
-	}
-	{
-		const prefix string = ",\"userID\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.UserID))
 	}
 	{
 		const prefix string = ",\"sort\":"
@@ -757,12 +735,6 @@ func easyjson22b96abDecodeGithubComGodaddyXWalletMpcTssWalletapiDto6(in *jlexer.
 			} else {
 				out.RootPath = string(in.String())
 			}
-		case "userID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.UserID = int64(in.Int64())
-			}
 		case "cmd":
 			if in.IsNull() {
 				in.Skip()
@@ -827,11 +799,6 @@ func easyjson22b96abEncodeGithubComGodaddyXWalletMpcTssWalletapiDto6(out *jwrite
 		const prefix string = ",\"rootPath\":"
 		out.RawString(prefix)
 		out.String(string(in.RootPath))
-	}
-	{
-		const prefix string = ",\"userID\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.UserID))
 	}
 	{
 		const prefix string = ",\"cmd\":"

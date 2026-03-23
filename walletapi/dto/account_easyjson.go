@@ -108,11 +108,11 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(in *jlexer
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "userID":
 			if in.IsNull() {
@@ -181,9 +181,9 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(out *jwrit
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"userID\":"
@@ -386,11 +386,11 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto3(in *jlexer
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "type":
 			if in.IsNull() {
@@ -476,9 +476,9 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto3(out *jwrit
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"type\":"
@@ -685,12 +685,6 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto5(in *jlexer
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "userID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.UserID = int64(in.Int64())
-			}
 		case "sort":
 			if in.IsNull() {
 				in.Skip()
@@ -756,11 +750,6 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto5(out *jwrit
 		const prefix string = ",\"symbol\":"
 		out.RawString(prefix)
 		out.String(string(in.Symbol))
-	}
-	{
-		const prefix string = ",\"userID\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.UserID))
 	}
 	{
 		const prefix string = ",\"sort\":"
@@ -1214,12 +1203,6 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto9(in *jlexer
 			} else {
 				out.ReqSigs = int64(in.Int64())
 			}
-		case "isTrust":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.IsTrust = int64(in.Int64())
-			}
 		case "publicKey":
 			if in.IsNull() {
 				in.Skip()
@@ -1255,18 +1238,6 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto9(in *jlexer
 				in.Skip()
 			} else {
 				out.Remark = string(in.String())
-			}
-		case "onlyAccount":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.OnlyAccount = int64(in.Int64())
-			}
-		case "userID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.UserID = int64(in.Int64())
 			}
 		case "cmd":
 			if in.IsNull() {
@@ -1355,11 +1326,6 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto9(out *jwrit
 		out.Int64(int64(in.ReqSigs))
 	}
 	{
-		const prefix string = ",\"isTrust\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.IsTrust))
-	}
-	{
 		const prefix string = ",\"publicKey\":"
 		out.RawString(prefix)
 		out.String(string(in.PublicKey))
@@ -1388,16 +1354,6 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto9(out *jwrit
 		const prefix string = ",\"remark\":"
 		out.RawString(prefix)
 		out.String(string(in.Remark))
-	}
-	{
-		const prefix string = ",\"onlyAccount\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.OnlyAccount))
-	}
-	{
-		const prefix string = ",\"userID\":"
-		out.RawString(prefix)
-		out.Int64(int64(in.UserID))
 	}
 	{
 		const prefix string = ",\"cmd\":"
@@ -1541,11 +1497,11 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto10(in *jlexe
 			} else {
 				out.UnconfirmBalance = string(in.String())
 			}
-		case "utime":
+		case "UpdateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Utime = int64(in.Int64())
+				out.UpdateAt = int64(in.Int64())
 			}
 		case "contractToken":
 			if in.IsNull() {
@@ -1628,9 +1584,9 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto10(out *jwri
 		out.String(string(in.UnconfirmBalance))
 	}
 	{
-		const prefix string = ",\"utime\":"
+		const prefix string = ",\"UpdateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Utime))
+		out.Int64(int64(in.UpdateAt))
 	}
 	{
 		const prefix string = ",\"contractToken\":"
@@ -1755,11 +1711,11 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto11(in *jlexe
 			} else {
 				out.HdPath = string(in.String())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -1841,9 +1797,9 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto11(out *jwri
 		out.String(string(in.HdPath))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	out.RawByte('}')
 }
@@ -1984,11 +1940,11 @@ func easyjson349b126bDecodeGithubComGodaddyXWalletMpcTssWalletapiDto12(in *jlexe
 			} else {
 				out.AddressIndex = int64(in.Int64())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		case "remark":
 			if in.IsNull() {
@@ -2087,9 +2043,9 @@ func easyjson349b126bEncodeGithubComGodaddyXWalletMpcTssWalletapiDto12(out *jwri
 		out.Int64(int64(in.AddressIndex))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	{
 		const prefix string = ",\"remark\":"

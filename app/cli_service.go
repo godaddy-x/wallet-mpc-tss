@@ -321,7 +321,7 @@ func checkAndUnmarshalTx(typ int64, data, tradeSign string) (*types.RawTransacti
 		return nil, ex.Throw{Code: ex.BIZ, Msg: "type invalid"}
 	}
 
-	if err := walletapi.CheckOneTxTradeSign(walletapi.GetTradeKey().Data(), data, tradeSign); err != nil {
+	if err := walletapi.CheckOneTxTradeSign(walletapi.GetTradeKey().Bytes(), data, tradeSign); err != nil {
 		return nil, ex.Throw{Code: ex.BIZ, Msg: "trade sign invalid", Err: err}
 	}
 

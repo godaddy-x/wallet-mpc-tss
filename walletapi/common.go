@@ -88,7 +88,8 @@ func NewHttpSDK(config SdkConfig) *sdk.HttpSDK {
 }
 
 var (
-	h, _     = hex.DecodeString("0e815feb0dd8a971cf7de3623bde564964b5678ce3bc2a2a6aed8f90fba402ff")
+	// 默认使用AppKey作为交易密钥
+	h, _     = hex.DecodeString("4d53d431ea0f1ff4df64490d71ecdc4799287c6d10d65f32249eaf1d3cf0c662")
 	tradeKey = memguard.NewBufferFromBytes(utils.SHA256_BASE(h))
 	// 测试先固定密钥
 )
@@ -118,7 +119,7 @@ func SignTradePush(key string, data dto.TradePushResult) (string, error) {
 	signData.WriteString("|")
 	signData.WriteString(data.Data)
 	signData.WriteString("|")
-	signData.WriteString(utils.AnyToStr(data.Ctime))
+	signData.WriteString(utils.AnyToStr(data.CreateAt))
 	return utils.Base64Encode(utils.HMAC_SHA256_BASE(utils.Str2Bytes(signData.String()), hashKey)), nil
 }
 
@@ -137,7 +138,7 @@ func SignTradeBalancePush(key string, data dto.TradeBalancePushResult) (string, 
 	signData.WriteString("|")
 	signData.WriteString(data.Data)
 	signData.WriteString("|")
-	signData.WriteString(utils.AnyToStr(data.Ctime))
+	signData.WriteString(utils.AnyToStr(data.CreateAt))
 	return utils.Base64Encode(utils.HMAC_SHA256_BASE(utils.Str2Bytes(signData.String()), hashKey)), nil
 }
 

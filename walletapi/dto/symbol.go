@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import "github.com/godaddy-x/freego/node/common"
 
@@ -20,13 +20,13 @@ type SymbolResult struct {
 	MainSymbol        string `json:"mainSymbol"`
 	Name              string `json:"name"`
 	Hash              string `json:"hash"`
-	Merkleroot        string `json:"merkleroot"`
-	Previousblockhash string `json:"previousblockhash"`
+	MerkleRoot        string `json:"merkleRoot"`
+	PreviousBlockHash string `json:"previousBlockHash"`
 	Height            int64  `json:"height"`
 	Version           int64  `json:"version"`
 	Time              int64  `json:"time"`
 	Fork              bool   `json:"fork"`
-	Confirmations     string `json:"confirmations"`
+	Confirmations     int64  `json:"confirmations"`
 }
 
 //easyjson:json

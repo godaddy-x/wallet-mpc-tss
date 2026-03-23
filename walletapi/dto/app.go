@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import "github.com/godaddy-x/freego/node/common"
 

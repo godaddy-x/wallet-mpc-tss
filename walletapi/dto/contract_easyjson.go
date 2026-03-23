@@ -145,11 +145,11 @@ func easyjson42340b0aDecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(in *jlexer
 			} else {
 				out.Symbol = string(in.String())
 			}
-		case "contractID":
+		case "contractAddress":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.ContractID = string(in.String())
+				out.ContractAddress = string(in.String())
 			}
 		case "mainSymbol":
 			if in.IsNull() {
@@ -219,9 +219,9 @@ func easyjson42340b0aEncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(out *jwrit
 		out.String(string(in.Symbol))
 	}
 	{
-		const prefix string = ",\"contractID\":"
+		const prefix string = ",\"contractAddress\":"
 		out.RawString(prefix)
-		out.String(string(in.ContractID))
+		out.String(string(in.ContractAddress))
 	}
 	{
 		const prefix string = ",\"mainSymbol\":"
@@ -309,12 +309,6 @@ func easyjson42340b0aDecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer
 			} else {
 				out.ID = int64(in.Int64())
 			}
-		case "contractID":
-			if in.IsNull() {
-				in.Skip()
-			} else {
-				out.ContractID = string(in.String())
-			}
 		case "symbol":
 			if in.IsNull() {
 				in.Skip()
@@ -351,11 +345,11 @@ func easyjson42340b0aDecodeGithubComGodaddyXWalletMpcTssWalletapiDto2(in *jlexer
 			} else {
 				out.Protocol = string(in.String())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -375,11 +369,6 @@ func easyjson42340b0aEncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwrit
 		const prefix string = ",\"id\":"
 		out.RawString(prefix[1:])
 		out.Int64(int64(in.ID))
-	}
-	{
-		const prefix string = ",\"contractID\":"
-		out.RawString(prefix)
-		out.String(string(in.ContractID))
 	}
 	{
 		const prefix string = ",\"symbol\":"
@@ -412,9 +401,9 @@ func easyjson42340b0aEncodeGithubComGodaddyXWalletMpcTssWalletapiDto2(out *jwrit
 		out.String(string(in.Protocol))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	out.RawByte('}')
 }

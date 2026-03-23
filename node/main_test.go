@@ -20,5 +20,5 @@ func TestRunAllNode(t *testing.T) {
 		cliConfig := walletapi.ReadJson("cli_node2.json")
 		RunMPCNode(cliConfig)
 	}()
-	time.Sleep(2000 * time.Second)
+	time.Sleep(2000 * time.Minute)
 }

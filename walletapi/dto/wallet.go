@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -11,7 +11,6 @@ type CreateWalletReq struct {
 	Alias    string `json:"alias"`
 	WalletID string `json:"walletID"`
 	RootPath string `json:"rootPath"`
-	UserID   int64  `json:"userID"`
 }
 
 //easyjson:json
@@ -27,7 +26,6 @@ type CreateWalletRes struct {
 type FindWalletByWalletIDReq struct {
 	common.BaseReq
 	WalletID string `json:"walletID"`
-	UserID   int64  `json:"userID"`
 }
 
 //easyjson:json
@@ -39,7 +37,6 @@ type FindWalletByWalletIDRes struct {
 type FindWalletByParamsReq struct {
 	common.BaseReq
 	WalletID string `json:"walletID"`
-	UserID   int64  `json:"userID"`
 	Sort     int    `json:"sort"`
 }
 
@@ -57,5 +54,5 @@ type WalletResult struct {
 	RootPath     string `json:"rootPath"`
 	Alias        string `json:"alias"`
 	AccountIndex int64  `json:"accountIndex"`
-	Ctime        int64  `json:"ctime"`
+	CreateAt     int64  `json:"CreateAt"`
 }

@@ -55,11 +55,11 @@ func easyjsonFc450ad2DecodeGithubComGodaddyXWalletMpcTssWalletapiDto(in *jlexer.
 			} else {
 				out.DataSign = string(in.String())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -96,9 +96,9 @@ func easyjsonFc450ad2EncodeGithubComGodaddyXWalletMpcTssWalletapiDto(out *jwrite
 		out.String(string(in.DataSign))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	out.RawByte('}')
 }
@@ -164,11 +164,11 @@ func easyjsonFc450ad2DecodeGithubComGodaddyXWalletMpcTssWalletapiDto1(in *jlexer
 			} else {
 				out.DataSign = string(in.String())
 			}
-		case "ctime":
+		case "CreateAt":
 			if in.IsNull() {
 				in.Skip()
 			} else {
-				out.Ctime = int64(in.Int64())
+				out.CreateAt = int64(in.Int64())
 			}
 		default:
 			in.SkipRecursive()
@@ -205,9 +205,9 @@ func easyjsonFc450ad2EncodeGithubComGodaddyXWalletMpcTssWalletapiDto1(out *jwrit
 		out.String(string(in.DataSign))
 	}
 	{
-		const prefix string = ",\"ctime\":"
+		const prefix string = ",\"CreateAt\":"
 		out.RawString(prefix)
-		out.Int64(int64(in.Ctime))
+		out.Int64(int64(in.CreateAt))
 	}
 	out.RawByte('}')
 }

@@ -2,8 +2,8 @@
   "domain": "http://localhost:8422",
   "keyPath": "/api/PublicKey",
   "loginPath": "/api/Login",
-  "appID": "306a2db061b405248c9d98f0904fc12a",
-  "appKey": "0e815feb0dd8a971cf7de3623bde564964b5678ce3bc2a2a6aed8f90fba402ff",
+  "appID": "1d4f71868070cba00dbb01a559c7abb4",
+  "appKey": "4d53d431ea0f1ff4df64490d71ecdc4799287c6d10d65f32249eaf1d3cf0c662",
   "clientNo": 200000010000001,
   "clientPrk": "B3PFK9kP8GBQGxY+jRS0YiTNvirkonvanjS11sZFKA8=",
   "serverPub": "BApNmUNU503aA/Y1OgbrKeQBdzJxMvBQF7+vu6mA+pKKIJQr3fMBtwHSnAhXt3IIqG9XYqMEexKO5B73F4lFJDw="

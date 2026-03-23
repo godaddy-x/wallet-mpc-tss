@@ -1,4 +1,4 @@
-package dto
+﻿package dto
 
 import (
 	"github.com/godaddy-x/freego/node/common"
@@ -32,7 +32,7 @@ type TradePushResult struct {
 	AppID    string `json:"appID"`
 	Data     string `json:"data"`
 	DataSign string `json:"dataSign"`
-	Ctime    int64  `json:"ctime"`
+	CreateAt    int64  `json:"CreateAt"`
 }
 
 //easyjson:json
@@ -51,7 +51,7 @@ type TradeBalancePushResult struct {
 	AppID    string `json:"appID"`
 	Data     string `json:"data"`
 	DataSign string `json:"dataSign"`
-	Ctime    int64  `json:"ctime"`
+	CreateAt    int64  `json:"CreateAt"`
 }
 
 //easyjson:json
